@@ -2,32 +2,41 @@ require_relative 'node.rb'
 
 class BinarySearchTree
 
-  attr_reader :root
+  attr_accessor :root
 
   def initialize 
     @root = nil
   end
 
-  def insert(curr_node, node)
-    if @root = nil
+  def insert(score,name)
+    @root = insert_recursively(@root, score, name)
+  end
+
+  def insert_recursively(curr_node, score, name)
+    if @root == nil
+      node = Node.new(score, name)
       @root = node
-      curr_node = @root
+    end
+
+    if curr_node == nil
+      curr_node = Node.new(score, name)
     end
     
-    if node.score == curr_node
-      return node
-    elsif 
-      node.score < curr_node.score
-      curr_node.left = node
+    
+    
+    if score < curr_node.score 
+      curr_node.left = Node.new(score, name)
       curr_node = curr_node.left
-    elsif 
-      node.score > curr_node.score
-      curr_node.right = node
+      puts "new node on left"
+      puts curr_node
+    
+    elsif score > curr_node.score
+      curr_node.right = Node.new(score, name)
       curr_node = curr_node.right
-    else
-      puts "failure"
+      puts "new node on right"
+      puts curr_node
+    
     end
-
-
+    curr_node
   end
 end
