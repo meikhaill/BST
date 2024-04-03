@@ -16,6 +16,14 @@ class BinarySearchTree
 
   # method_counter = 0
 
+  def max
+    curr_node = @root
+    while curr_node.right != nil
+      curr_node = curr_node.right
+    end
+    return curr_node
+  end
+
   def min
     curr_node = @root
     while curr_node.left != nil
@@ -31,14 +39,14 @@ class BinarySearchTree
 
   def insert_recursively(curr_node, score, name, counter = 0)
     if @root == nil
-      node = Node.new(score, name, counter)
+      node = Node.new(score, name)
       @root = node
     end
 
     # method_counter + 1
 
     if curr_node == nil
-      return Node.new(score, name, method_counter)
+      return Node.new(score, name)
     end
     
     if score < curr_node.score 
