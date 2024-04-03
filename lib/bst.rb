@@ -1,13 +1,27 @@
 require_relative 'node.rb'
+# require_relative 'movies.txt'
 
 class BinarySearchTree
 
-  attr_accessor :root, :sorted_arr
+  attr_accessor :root, :sorted_arr, :movies
 
   def initialize 
     @root = nil
     @sorted_arr = []
+    @movies = []
     
+  end
+
+
+  def load_list
+    File.foreach("movies.txt") do |line|
+      score, title = line.chomp.split(", ")
+      insert(score.to_i, title)
+    end
+
+    # @movies.each do |movie|
+    #   this.insert(movie)
+    # end
   end
 
   def insert(score,name)
@@ -67,7 +81,7 @@ class BinarySearchTree
     while curr_node.right != nil
       curr_node = curr_node.right
     end
-    return curr_node
+    puts "Maximum score: #{curr_node.score}, Name: #{curr_node.name}"
   end
 
   def min
@@ -75,12 +89,7 @@ class BinarySearchTree
     while curr_node.left != nil
       curr_node = curr_node.left
     end
-    return curr_node
-    # unless curr_node.left.left == nil
-    #   curr_node = curr_node.left
-    # else
-    #   puts curr_node.left
-    # end
+    puts "Minimum score: #{curr_node.score}, Name: #{curr_node.name}"
   end
 
   def insert_recursively(curr_node, score, name, counter = 0)
@@ -99,8 +108,10 @@ class BinarySearchTree
       if curr_node.left == nil 
         curr_node.left = Node.new(score, name)
         @sorted_arr.push(curr_node.left)
-        # curr_node.left.counter += 1
+      
+        
       elsif 
+        curr_node.counter + 1
         curr_node.left = insert_recursively(curr_node.left, score, name)
         # unless curr_node.left.nil? then curr_node.left.counter += 1 end
       end
@@ -108,8 +119,11 @@ class BinarySearchTree
       if curr_node.right == nil
         curr_node.right = Node.new(score, name)
         @sorted_arr.push(curr_node.right)
+       
       elsif 
-        curr_node.right = insert_recursively(curr_node.right, score, name)
+        curr_node.counter + 1
+        curr_node.right = insert_recursively(curr_node.right, score, name, counter)
+        # unless curr_node.right.nil? then curr_node.right.counter += 1 end
       end
     end
 
