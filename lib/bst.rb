@@ -64,6 +64,11 @@ class BinarySearchTree
         curr_node.right = insert_recursively(curr_node.right, score, name)
       end
     end
+
+    def include?(num)
+      curr_node = @root
+      while 
+    end
     
     
     # # if score < curr_node.score 
@@ -82,7 +87,5 @@ class BinarySearchTree
     curr_node
   end
 
-  def include?
-  
-  end
+ 
 end
