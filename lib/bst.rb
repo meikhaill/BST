@@ -16,6 +16,24 @@ class BinarySearchTree
 
   # method_counter = 0
 
+  def depth_of(score, curr_node = @root, depth = 0)
+    if curr_node == nil
+      return nil
+    end
+
+    if score == curr_node.score
+      return depth
+    elsif score < curr_node.score
+      return depth_of(score, curr_node.left, depth + 1)
+    else
+      return depth_of(score, curr_node.right, depth + 1)
+    end
+    # curr_node = @root
+    # if 
+    # while curr_node.score != num
+    #   curr_node =
+  end
+
   def max
     curr_node = @root
     while curr_node.right != nil
@@ -65,10 +83,10 @@ class BinarySearchTree
       end
     end
 
-    def include?(num)
-      curr_node = @root
-      while 
-    end
+    # def include?(num)
+    #   curr_node = @root
+    #   while 
+    # end
     
     
     # # if score < curr_node.score 
