@@ -6,6 +6,7 @@ class BinarySearchTree
 
   def initialize 
     @root = nil
+    
   end
 
   def insert(score,name)
@@ -13,21 +14,40 @@ class BinarySearchTree
     puts "root is currently #{@root}"
   end
 
-  def insert_recursively(curr_node, score, name)
+  # method_counter = 0
+
+  def min
+    curr_node = @root
+    while curr_node.left != nil
+      curr_node = curr_node.left
+    end
+    return curr_node
+    # unless curr_node.left.left == nil
+    #   curr_node = curr_node.left
+    # else
+    #   puts curr_node.left
+    # end
+  end
+
+  def insert_recursively(curr_node, score, name, counter = 0)
     if @root == nil
-      node = Node.new(score, name)
+      node = Node.new(score, name, counter)
       @root = node
     end
 
+    # method_counter + 1
+
     if curr_node == nil
-      return Node.new(score, name)
+      return Node.new(score, name, method_counter)
     end
     
     if score < curr_node.score 
       if curr_node.left == nil 
         curr_node.left = Node.new(score, name)
+        # curr_node.left.counter += 1
       elsif 
         curr_node.left = insert_recursively(curr_node.left, score, name)
+        # unless curr_node.left.nil? then curr_node.left.counter += 1 end
       end
     elsif score > curr_node.score
       if curr_node.right == nil
@@ -52,5 +72,9 @@ class BinarySearchTree
     
     # end
     curr_node
+  end
+
+  def include?
+  
   end
 end
