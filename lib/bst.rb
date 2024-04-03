@@ -2,10 +2,11 @@ require_relative 'node.rb'
 
 class BinarySearchTree
 
-  attr_accessor :root
+  attr_accessor :root, :sorted_arr
 
   def initialize 
     @root = nil
+    @sorted_arr = []
     
   end
 
@@ -13,6 +14,15 @@ class BinarySearchTree
     @root = insert_recursively(@root, score, name)
     puts "root is currently #{@root}"
   end
+
+  def sort_tree
+    pre_sort_arr = @sorted_arr.map {|node| {score: node.score, name: node.name}}
+    sorted_tree_arr = pre_sort_arr.sort_by { |node| node[:score]}
+    return sorted_tree_arr
+
+  end
+
+
 
   # method_counter = 0
 
@@ -88,6 +98,7 @@ class BinarySearchTree
     if score < curr_node.score 
       if curr_node.left == nil 
         curr_node.left = Node.new(score, name)
+        @sorted_arr.push(curr_node.left)
         # curr_node.left.counter += 1
       elsif 
         curr_node.left = insert_recursively(curr_node.left, score, name)
@@ -96,6 +107,7 @@ class BinarySearchTree
     elsif score > curr_node.score
       if curr_node.right == nil
         curr_node.right = Node.new(score, name)
+        @sorted_arr.push(curr_node.right)
       elsif 
         curr_node.right = insert_recursively(curr_node.right, score, name)
       end
