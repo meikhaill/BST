@@ -8,6 +8,7 @@ class Node
     @right = nil
     @counter = 0
     @children = 0
+    
   end
 
   # def score
