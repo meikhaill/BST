@@ -19,6 +19,8 @@ class BinarySearchTree
       insert(score.to_i, title)
     end
 
+    return @root
+
     # @movies.each do |movie|
     #   this.insert(movie)
     # end
@@ -107,7 +109,7 @@ class BinarySearchTree
 
   def insert_recursively(curr_node, score, name, counter = 0)
     if @root == nil
-      @root = Node.new(score, name)
+      @root = Node.new(score, name, counter)
       
     end
 
@@ -115,6 +117,7 @@ class BinarySearchTree
 
     if curr_node == nil
       return Node.new(score, name)
+      puts "root is #{@root}"
     end
     
     if score < curr_node.score 
