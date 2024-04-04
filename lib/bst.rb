@@ -60,6 +60,19 @@ class BinarySearchTree
     #   curr_node =
   end
 
+  def count_children(node, children = 0)
+    
+    # if node == nil
+    #   return 0
+    # end
+
+    left_children = count_children(node.left, children + 1)
+    right_children = count_children(node.right, children + 1)
+    total_children = left_children + right_children
+
+    return total_children
+  end
+
   def include?(score, curr_node = @root)
     if curr_node == nil 
       return nil
@@ -94,8 +107,8 @@ class BinarySearchTree
 
   def insert_recursively(curr_node, score, name, counter = 0)
     if @root == nil
-      node = Node.new(score, name)
-      @root = node
+      @root = Node.new(score, name)
+      
     end
 
     # method_counter + 1
