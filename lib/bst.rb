@@ -3,17 +3,14 @@ require_relative 'node.rb'
 
 class BinarySearchTree
 
-  attr_accessor :root, :sorted_arr, :movies, :size
+  attr_accessor :root, :sorted_arr, :movies
 
   def initialize 
     @root = nil
     @sorted_arr = []
     @movies = []
-    @size = 0
     
   end
-
-  
 
 
   def load_list
@@ -21,7 +18,6 @@ class BinarySearchTree
       score, title = line.chomp.split(", ")
       insert(score.to_i, title)
     end
-    
 
     # @movies.each do |movie|
     #   this.insert(movie)
@@ -40,9 +36,25 @@ class BinarySearchTree
 
   end
 
+  def count_children(node, count = 0)
+    if node == nil
+      return node
+    end
+
+    if
+
+    end
+
+  end
+
+  def health(depth)
+    if node == 
+  end
 
 
-  # method_counter = 0
+  def leaves
+
+  end
 
   def depth_of(score, curr_node = @root, depth = 0)
     if curr_node == nil
@@ -62,19 +74,6 @@ class BinarySearchTree
     # if 
     # while curr_node.score != num
     #   curr_node =
-  end
-
-  def count_children(node, children = 0)
-    
-    # if node == nil
-    #   return 0
-    # end
-
-    left_children = count_children(node.left, children + 1)
-    right_children = count_children(node.right, children + 1)
-    total_children = left_children + right_children
-
-    return total_children
   end
 
   def include?(score, curr_node = @root)
@@ -109,26 +108,21 @@ class BinarySearchTree
     puts "Minimum score: #{curr_node.score}, Name: #{curr_node.name}"
   end
 
-  def insert_recursively(curr_node, score, name)
+  def insert_recursively(curr_node, score, name, counter = 0)
     if @root == nil
-      @root = Node.new(score, name)
-       @size + 1
-      @sorted_arr.push(@root)
-      
+      node = Node.new(score, name)
+      @root = node
     end
 
     # method_counter + 1
 
     if curr_node == nil
       return Node.new(score, name)
-       @size + 1
-      puts "root is #{@root}"
     end
     
     if score < curr_node.score 
       if curr_node.left == nil 
         curr_node.left = Node.new(score, name)
-         @size + 1
         @sorted_arr.push(curr_node.left)
       
         
@@ -140,12 +134,11 @@ class BinarySearchTree
     elsif score > curr_node.score
       if curr_node.right == nil
         curr_node.right = Node.new(score, name)
-        @size + 1
         @sorted_arr.push(curr_node.right)
        
       elsif 
         curr_node.counter + 1
-        curr_node.right = insert_recursively(curr_node.right, score, name)
+        curr_node.right = insert_recursively(curr_node.right, score, name, counter)
         # unless curr_node.right.nil? then curr_node.right.counter += 1 end
       end
     end
