@@ -36,9 +36,20 @@ class BinarySearchTree
 
   end
 
+  def count_children(node, count = 0)
+    if node == nil
+      return node
+    end
+  end
+
+  # def health(depth)
+  #   if node == 
+  # end
 
 
-  # method_counter = 0
+  # def leaves
+
+  # end
 
   def depth_of(score, curr_node = @root, depth = 0)
     if curr_node == nil
@@ -82,6 +93,7 @@ class BinarySearchTree
       curr_node = curr_node.right
     end
     puts "Maximum score: #{curr_node.score}, Name: #{curr_node.name}"
+    return curr_node.score
   end
 
   def min
@@ -90,6 +102,7 @@ class BinarySearchTree
       curr_node = curr_node.left
     end
     puts "Minimum score: #{curr_node.score}, Name: #{curr_node.name}"
+    return curr_node.score
   end
 
   def insert_recursively(curr_node, score, name, counter = 0)
